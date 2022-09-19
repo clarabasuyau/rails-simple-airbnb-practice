@@ -6,12 +6,15 @@
     <div class="card-flat">
       <div class="card-flat-infos">
         <div>
-          <h2><%= link_to flat.name, flat_path(flat) %></h2>
+          <h2><%= flat.name %></h2>
           <p><%= flat.description %></p>
         </div>
         <h2 class="card-flat-pricing"><%= flat.price_per_night %></h2>
       </div>
+      <%= link_to 'More info', flat_path(flat) %>
       <%= link_to 'Edit flat', edit_flat_path(flat) %>
+      <%= link_to 'Remove', flat_path(flat),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
     </div>
   <% end %>
 </div>
