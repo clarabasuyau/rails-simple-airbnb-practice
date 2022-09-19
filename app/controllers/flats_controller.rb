@@ -1,6 +1,12 @@
 class FlatsController < ApplicationController
   def index
     @flats = Flat.all
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR address ILIKE :query"
+      @flats = Flat.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @flats = Flat.all
+    end
   end
 
   def new
