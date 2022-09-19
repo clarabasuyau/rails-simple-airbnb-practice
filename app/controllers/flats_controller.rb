@@ -20,24 +20,25 @@ class FlatsController < ApplicationController
     @flat = Flat.find(params[:id])
   end
 
+  def edit
+    @flat = Flat.find(params[:id])
+  end
+
+  def update
+    @flat = Flat.find(params[:id])
+    @flat.update(flat_params)
+    redirect_to flat_path(@flat)
+  end
+
+  def destroy
+    @flat = Flat.find(params[:id])
+    @flat.destroy
+    redirect_to flats_path, status: :see_other
+  end
+
   private
+
   def flat_params
     params.require(:flat).permit(:name, :address, :description, :price_per_night, :number_of_guests)
   end
 end
-
-# def edit
-#   @car = Car.find(params[:id])
-# end
-
-# def update
-#   @car = Car.find(params[:id])
-#   @car.update(car_params)
-#   redirect_to car_path(@car)
-# end
-
-# def destroy
-#   @car = Car.find(params[:id])
-#   @car.destroy
-#   redirect_to cars_path, status: :see_other
-# end
